@@ -90,7 +90,21 @@ namespace SistemaPrestamos
 				);
 			}
 			
-			conexion.GetExpired();
+			Dictionary<string, Prestamo> prestamosVencidos = conexion.GetExpired();
+			listaPrestamosVencidos.Rows.Clear();
+						
+			for(int i = 0; i < prestamosVencidos.Count; i++){
+				listaPrestamosVencidos.Rows.Add(
+					prestamosVencidos["prestamo" + (i + 1)].Id,
+					prestamosVencidos["prestamo" + (i + 1)].NombreEstudiante,
+					prestamosVencidos["prestamo" + (i + 1)].ApellidosEstudiante,
+					prestamosVencidos["prestamo" + (i + 1)].EspecialidadEstudiante,
+					prestamosVencidos["prestamo" + (i + 1)].Semestre,
+					prestamosVencidos["prestamo" + (i + 1)].FechaEntrega,
+					prestamosVencidos["prestamo" + (i + 1)].FechaLimite,
+					prestamosVencidos["prestamo" + (i + 1)].CodigoControlLibro
+				);
+			}
 		}
 		void HabilitarBotonLibro(object sender, EventArgs e)
 		{
@@ -210,8 +224,11 @@ namespace SistemaPrestamos
 			prestamo.EspecialidadEstudiante = txtEspecialidad.Text;
 			
 			//Datos de la fecha de entrega
-			prestamo.FechaEntrega = txtFechaEntrega.Text;
-			prestamo.FechaLimite = txtFechaLimite.Text;
+			string[] fecha_entrega = Convert.ToDateTime(txtFechaEntrega.Text).ToString().Split(' ');
+			string[] fecha_limite = Convert.ToDateTime(txtFechaLimite.Text).ToString().Split(' ');
+			
+			prestamo.FechaEntrega = fecha_entrega[0];
+			prestamo.FechaLimite = fecha_limite[0];
 			
 			//Datos del libro
 			prestamo.CodigoControlLibro = txtCodigoControlPrestamo.Text;

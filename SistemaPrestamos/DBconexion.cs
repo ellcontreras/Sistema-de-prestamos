@@ -335,15 +335,16 @@ namespace SistemaPrestamos
 			try{
 	    		if(OpenConnection()){
 	    			Dictionary<string, Prestamo> prestamos = new Dictionary<string, Prestamo>();
-	    			DateTime fecha = new DateTime();
-	    			var f = fecha.GetDateTimeFormats();
-	    			MessageBox.Show(f.ToString());
-	    			string query = string.Format("SELECT * FROM prestamo WHERE fechaEntrega = {0}", f);
+	    			DateTime fecha = DateTime.Now;
+	    			
+	    			string[] formatoFecha = fecha.ToString().Split(' ');
+
+	    			string query = string.Format("SELECT * FROM prestamo WHERE fechaEntrega <= '{0}'", formatoFecha[0]);
 	    			
 	    			SQLiteCommand cmd = new SQLiteCommand(query, connection);
 	    			
 	    			SQLiteDataReader dataReader = cmd.ExecuteReader();
-	    			
+	    				
 	    			if(dataReader.HasRows){
 	    				for(int i = 0; dataReader.Read(); i++){
 	    					Prestamo prestamo = new Prestamo();
