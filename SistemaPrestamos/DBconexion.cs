@@ -126,9 +126,11 @@ namespace SistemaPrestamos
 	    }
 	
 	    //Delete statement
-	    public bool Delete(string query){
+	    public bool Delete(string table, string wher){
 	    	try{
 		    	if(OpenConnection()){
+	    			string query = string.Format("DELETE FROM {0} WHERE {1}", table, wher);
+	    			
 		    		SQLiteCommand cmd = new SQLiteCommand(query, connection);
 		    		
 		    		cmd.ExecuteNonQuery();
@@ -201,50 +203,6 @@ namespace SistemaPrestamos
 	    	return count;
 	    }
 	    
-//	    public Dictionary<string, Libro> GetAllBooks(){
-//	    	try {
-//	    		if(OpenConnection()){
-//	    			Dictionary<string, Libro> libros = new Dictionary<string, Libro>();
-//	    			string query = "SELECT * FROM libro";
-//	    			
-//	    			SQLiteCommand cmd = new SQLiteCommand(query, connection);
-//	    			
-//	    			SQLiteDataReader dataReader = cmd.ExecuteReader();
-//	    			
-//	    			for(int i = 0; dataReader.Read(); i++){
-//    					Libro libro = new Libro(
-//    						dataReader.GetString(0),
-//    						dataReader.GetString(1),
-//    						dataReader.GetString(2),
-//    						dataReader.GetString(3),
-//    						dataReader.GetString(4),
-//    						dataReader.GetInt32(5),
-//    						dataReader.GetString(6),
-//    						dataReader.GetString(7),
-//    						dataReader.GetString(8),
-//    						dataReader.GetInt32(9),
-//    						dataReader.GetString(10)
-//    					);
-//	    				
-//	    				libros.Add("libro"+(i + 1), libro);
-//	    			}
-//	    			
-//	    			dataReader.Close();
-//	    			
-//	    			CloseConnection();
-//	    			
-//	    			return libros;
-//	    		}
-//	    		
-//	    		return null;
-//	    	} catch(Exception){
-//	    		MessageBox.Show("Ha ocurrido un error con la base de datos contacta al administrador", "Error!");
-//	    		
-//	    		return null;
-//	    	}
-//	    	
-//	    }
-	
 		public Dictionary<string, Prestamo> GetAllLends(){
 	    	try {
 	    		if(OpenConnection()){
@@ -271,8 +229,6 @@ namespace SistemaPrestamos
 		    				
 		    				prestamos.Add("prestamo"+(i + 1), prestamo);
 		    			}
-	    			} else {
-	    				MessageBox.Show("No se han encontrado registros");
 	    			}
 	    			
 	    			dataReader.Close();

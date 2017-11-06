@@ -17,3 +17,4 @@ C:\Users\luisg\Documents\SharpDevelop Projects\SistemaPrestamos\SistemaPrestamos
 C:\Users\luisg\Documents\SharpDevelop Projects\SistemaPrestamos\SistemaPrestamos\bin\Debug\Gma.QrCodeNet.Encoding.dll
 C:\Users\luisg\Documents\SharpDevelop Projects\SistemaPrestamos\SistemaPrestamos\bin\Debug\Gma.QrCodeNet.Encoding.pdb
 C:\Users\luisg\Documents\SharpDevelop Projects\SistemaPrestamos\SistemaPrestamos\bin\Debug\Gma.QrCodeNet.Encoding.xml
+C:\Users\luisg\Documents\SharpDevelop Projects\SistemaPrestamos\SistemaPrestamos\bin\Debug\Tulpep.NotificationWindow.dll

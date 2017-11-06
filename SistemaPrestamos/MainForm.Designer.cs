@@ -167,17 +167,6 @@ namespace SistemaPrestamos
 			this.tabPage3 = new System.Windows.Forms.TabPage();
 			this.tabPage4 = new System.Windows.Forms.TabPage();
 			this.listaLibros = new System.Windows.Forms.DataGridView();
-			this.tabPage5 = new System.Windows.Forms.TabPage();
-			this.listaPrestamosVencidos = new System.Windows.Forms.DataGridView();
-			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
 			this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -189,6 +178,17 @@ namespace SistemaPrestamos
 			this.formato = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.noPaginas = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+			this.tabPage5 = new System.Windows.Forms.TabPage();
+			this.listaPrestamosVencidos = new System.Windows.Forms.DataGridView();
+			this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
 			((System.ComponentModel.ISupportInitialize)(this.txtSemestre)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
 			this.tabControl1.SuspendLayout();
@@ -560,6 +560,7 @@ namespace SistemaPrestamos
 			// 
 			// dataGridView1
 			// 
+			this.dataGridView1.AllowUserToAddRows = false;
 			this.dataGridView1.AllowUserToDeleteRows = false;
 			this.dataGridView1.AllowUserToOrderColumns = true;
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -579,55 +580,66 @@ namespace SistemaPrestamos
 			this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Name = "dataGridView1";
+			this.dataGridView1.ReadOnly = true;
 			this.dataGridView1.RowTemplate.Height = 25;
 			this.dataGridView1.Size = new System.Drawing.Size(1684, 625);
 			this.dataGridView1.TabIndex = 0;
+			this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eliminarPrestamo);
 			// 
 			// id
 			// 
 			this.id.HeaderText = "ID del prestamo";
 			this.id.MinimumWidth = 100;
 			this.id.Name = "id";
+			this.id.ReadOnly = true;
 			// 
 			// nombreAlumno
 			// 
 			this.nombreAlumno.HeaderText = "Nombre del alumno";
 			this.nombreAlumno.Name = "nombreAlumno";
+			this.nombreAlumno.ReadOnly = true;
 			// 
 			// apellidosAlumno
 			// 
 			this.apellidosAlumno.HeaderText = "Apellidos del alumno";
 			this.apellidosAlumno.Name = "apellidosAlumno";
+			this.apellidosAlumno.ReadOnly = true;
 			// 
 			// especialidad
 			// 
 			this.especialidad.HeaderText = "Especialidad";
 			this.especialidad.Name = "especialidad";
+			this.especialidad.ReadOnly = true;
 			// 
 			// Semestre
 			// 
 			this.Semestre.HeaderText = "Semestre";
 			this.Semestre.Name = "Semestre";
+			this.Semestre.ReadOnly = true;
 			// 
 			// fechaEntrega
 			// 
 			this.fechaEntrega.HeaderText = "Fecha de entrega";
 			this.fechaEntrega.Name = "fechaEntrega";
+			this.fechaEntrega.ReadOnly = true;
 			// 
 			// fechaLimite
 			// 
 			this.fechaLimite.HeaderText = "Fecha limite";
 			this.fechaLimite.Name = "fechaLimite";
+			this.fechaLimite.ReadOnly = true;
 			// 
 			// condigoControl
 			// 
 			this.condigoControl.HeaderText = "Codigo de contról ";
 			this.condigoControl.Name = "condigoControl";
+			this.condigoControl.ReadOnly = true;
 			// 
 			// btnBorrarPrestamo
 			// 
 			this.btnBorrarPrestamo.HeaderText = "Eliminar";
 			this.btnBorrarPrestamo.Name = "btnBorrarPrestamo";
+			this.btnBorrarPrestamo.ReadOnly = true;
 			this.btnBorrarPrestamo.Text = "Eliminar";
 			this.btnBorrarPrestamo.ToolTipText = "Borrar este prestamo";
 			this.btnBorrarPrestamo.UseColumnTextForButtonValue = true;
@@ -757,91 +769,6 @@ namespace SistemaPrestamos
 			this.listaLibros.Size = new System.Drawing.Size(1684, 625);
 			this.listaLibros.TabIndex = 1;
 			// 
-			// tabPage5
-			// 
-			this.tabPage5.Controls.Add(this.listaPrestamosVencidos);
-			this.tabPage5.Location = new System.Drawing.Point(4, 38);
-			this.tabPage5.Name = "tabPage5";
-			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage5.Size = new System.Drawing.Size(1684, 817);
-			this.tabPage5.TabIndex = 4;
-			this.tabPage5.Text = "Prestamos vencidos";
-			this.tabPage5.UseVisualStyleBackColor = true;
-			// 
-			// listaPrestamosVencidos
-			// 
-			this.listaPrestamosVencidos.AllowUserToDeleteRows = false;
-			this.listaPrestamosVencidos.AllowUserToOrderColumns = true;
-			this.listaPrestamosVencidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.listaPrestamosVencidos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-			this.listaPrestamosVencidos.BackgroundColor = System.Drawing.SystemColors.Control;
-			this.listaPrestamosVencidos.ColumnHeadersHeight = 100;
-			this.listaPrestamosVencidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.dataGridViewTextBoxColumn9,
-			this.dataGridViewTextBoxColumn10,
-			this.dataGridViewTextBoxColumn11,
-			this.dataGridViewTextBoxColumn12,
-			this.dataGridViewTextBoxColumn13,
-			this.dataGridViewTextBoxColumn14,
-			this.dataGridViewTextBoxColumn15,
-			this.dataGridViewTextBoxColumn16,
-			this.dataGridViewButtonColumn1});
-			this.listaPrestamosVencidos.GridColor = System.Drawing.SystemColors.ActiveCaption;
-			this.listaPrestamosVencidos.Location = new System.Drawing.Point(0, 0);
-			this.listaPrestamosVencidos.Name = "listaPrestamosVencidos";
-			this.listaPrestamosVencidos.RowTemplate.Height = 25;
-			this.listaPrestamosVencidos.Size = new System.Drawing.Size(1684, 625);
-			this.listaPrestamosVencidos.TabIndex = 1;
-			// 
-			// dataGridViewTextBoxColumn9
-			// 
-			this.dataGridViewTextBoxColumn9.HeaderText = "ID del prestamo";
-			this.dataGridViewTextBoxColumn9.MinimumWidth = 100;
-			this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-			// 
-			// dataGridViewTextBoxColumn10
-			// 
-			this.dataGridViewTextBoxColumn10.HeaderText = "Nombre del alumno";
-			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-			// 
-			// dataGridViewTextBoxColumn11
-			// 
-			this.dataGridViewTextBoxColumn11.HeaderText = "Apellidos del alumno";
-			this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-			// 
-			// dataGridViewTextBoxColumn12
-			// 
-			this.dataGridViewTextBoxColumn12.HeaderText = "Especialidad";
-			this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-			// 
-			// dataGridViewTextBoxColumn13
-			// 
-			this.dataGridViewTextBoxColumn13.HeaderText = "Semestre";
-			this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-			// 
-			// dataGridViewTextBoxColumn14
-			// 
-			this.dataGridViewTextBoxColumn14.HeaderText = "Fecha de entrega";
-			this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-			// 
-			// dataGridViewTextBoxColumn15
-			// 
-			this.dataGridViewTextBoxColumn15.HeaderText = "Fecha limite";
-			this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-			// 
-			// dataGridViewTextBoxColumn16
-			// 
-			this.dataGridViewTextBoxColumn16.HeaderText = "Codigo de contról ";
-			this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-			// 
-			// dataGridViewButtonColumn1
-			// 
-			this.dataGridViewButtonColumn1.HeaderText = "Eliminar";
-			this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-			this.dataGridViewButtonColumn1.Text = "Eliminar";
-			this.dataGridViewButtonColumn1.ToolTipText = "Borrar este prestamo";
-			this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
-			// 
 			// dataGridViewTextBoxColumn8
 			// 
 			this.dataGridViewTextBoxColumn8.HeaderText = "Codigo de contról ";
@@ -909,6 +836,103 @@ namespace SistemaPrestamos
 			this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
 			this.Column1.Name = "Column1";
 			this.Column1.ReadOnly = true;
+			// 
+			// tabPage5
+			// 
+			this.tabPage5.Controls.Add(this.listaPrestamosVencidos);
+			this.tabPage5.Location = new System.Drawing.Point(4, 38);
+			this.tabPage5.Name = "tabPage5";
+			this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage5.Size = new System.Drawing.Size(1684, 817);
+			this.tabPage5.TabIndex = 4;
+			this.tabPage5.Text = "Prestamos vencidos";
+			this.tabPage5.UseVisualStyleBackColor = true;
+			// 
+			// listaPrestamosVencidos
+			// 
+			this.listaPrestamosVencidos.AllowUserToAddRows = false;
+			this.listaPrestamosVencidos.AllowUserToDeleteRows = false;
+			this.listaPrestamosVencidos.AllowUserToOrderColumns = true;
+			this.listaPrestamosVencidos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.listaPrestamosVencidos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+			this.listaPrestamosVencidos.BackgroundColor = System.Drawing.SystemColors.Control;
+			this.listaPrestamosVencidos.ColumnHeadersHeight = 100;
+			this.listaPrestamosVencidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.dataGridViewTextBoxColumn9,
+			this.dataGridViewTextBoxColumn10,
+			this.dataGridViewTextBoxColumn11,
+			this.dataGridViewTextBoxColumn12,
+			this.dataGridViewTextBoxColumn13,
+			this.dataGridViewTextBoxColumn14,
+			this.dataGridViewTextBoxColumn15,
+			this.dataGridViewTextBoxColumn16,
+			this.dataGridViewButtonColumn1});
+			this.listaPrestamosVencidos.GridColor = System.Drawing.SystemColors.ActiveCaption;
+			this.listaPrestamosVencidos.Location = new System.Drawing.Point(0, 0);
+			this.listaPrestamosVencidos.Name = "listaPrestamosVencidos";
+			this.listaPrestamosVencidos.ReadOnly = true;
+			this.listaPrestamosVencidos.RowTemplate.Height = 25;
+			this.listaPrestamosVencidos.Size = new System.Drawing.Size(1684, 625);
+			this.listaPrestamosVencidos.TabIndex = 1;
+			this.listaPrestamosVencidos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eliminarPrestamo);
+			// 
+			// dataGridViewTextBoxColumn9
+			// 
+			this.dataGridViewTextBoxColumn9.HeaderText = "ID del prestamo";
+			this.dataGridViewTextBoxColumn9.MinimumWidth = 100;
+			this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+			this.dataGridViewTextBoxColumn9.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn10
+			// 
+			this.dataGridViewTextBoxColumn10.HeaderText = "Nombre del alumno";
+			this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+			this.dataGridViewTextBoxColumn10.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn11
+			// 
+			this.dataGridViewTextBoxColumn11.HeaderText = "Apellidos del alumno";
+			this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+			this.dataGridViewTextBoxColumn11.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn12
+			// 
+			this.dataGridViewTextBoxColumn12.HeaderText = "Especialidad";
+			this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+			this.dataGridViewTextBoxColumn12.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn13
+			// 
+			this.dataGridViewTextBoxColumn13.HeaderText = "Semestre";
+			this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+			this.dataGridViewTextBoxColumn13.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn14
+			// 
+			this.dataGridViewTextBoxColumn14.HeaderText = "Fecha de entrega";
+			this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+			this.dataGridViewTextBoxColumn14.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn15
+			// 
+			this.dataGridViewTextBoxColumn15.HeaderText = "Fecha limite";
+			this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+			this.dataGridViewTextBoxColumn15.ReadOnly = true;
+			// 
+			// dataGridViewTextBoxColumn16
+			// 
+			this.dataGridViewTextBoxColumn16.HeaderText = "Codigo de contról ";
+			this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+			this.dataGridViewTextBoxColumn16.ReadOnly = true;
+			// 
+			// dataGridViewButtonColumn1
+			// 
+			this.dataGridViewButtonColumn1.HeaderText = "Eliminar";
+			this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+			this.dataGridViewButtonColumn1.ReadOnly = true;
+			this.dataGridViewButtonColumn1.Text = "Eliminar";
+			this.dataGridViewButtonColumn1.ToolTipText = "Borrar este prestamo";
+			this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
 			// 
 			// MainForm
 			// 

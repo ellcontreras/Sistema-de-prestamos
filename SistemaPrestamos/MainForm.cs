@@ -14,6 +14,7 @@ using System.IO;
 using System.Windows.Forms;
 using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.Render;
+using Tulpep.NotificationWindow;
 
 namespace SistemaPrestamos
 {
@@ -51,13 +52,30 @@ namespace SistemaPrestamos
 			listaTextBoxPrestamo[2] = txtCodigoControlPrestamo;
 			
 		}
+		protected void mostrarNotificacion(string mensaje = null){
+			try{
+				PopupNotifier popup = new PopupNotifier();
+				popup.TitleText = "Información";
+				
+				if(mensaje != null){
+					popup.ContentText = mensaje;
+				}
+				
+				popup.Popup();
+				
+			} catch(Exception){
+				MessageBox.Show("Ocurrio un error al mostrar una notificación, contacta al administrador");
+			}
+		}
 		void MainFormLoad(object sender, EventArgs e)
 		{
+			
 			Dictionary<string, Prestamo> prestamos = conexion.GetAllLends();
 			
 			dataGridView1.Rows.Clear();
+			DataGridViewButtonColumn button = new DataGridViewButtonColumn();
 			
-			for(int i = 0; i < prestamos.Count; i++){
+			for(int i = 0; i < prestamos.Count; i++){	
 				dataGridView1.Rows.Add(
 					prestamos["prestamo" + (i + 1)].Id,
 					prestamos["prestamo" + (i + 1)].NombreEstudiante,
@@ -92,7 +110,9 @@ namespace SistemaPrestamos
 			
 			Dictionary<string, Prestamo> prestamosVencidos = conexion.GetExpired();
 			listaPrestamosVencidos.Rows.Clear();
-						
+			
+			mostrarNotificacion("Hay " + prestamosVencidos.Count + " prestamos pendientes");
+			
 			for(int i = 0; i < prestamosVencidos.Count; i++){
 				listaPrestamosVencidos.Rows.Add(
 					prestamosVencidos["prestamo" + (i + 1)].Id,
@@ -246,6 +266,17 @@ namespace SistemaPrestamos
 			} else {
 				MessageBox.Show("Ocurrio un error al añadir el prestamo!", "Aviso!");
 			}
+		}
+		
+		void eliminarPrestamo(object sender, DataGridViewCellEventArgs e){
+			var senderGrid = (DataGridView)sender;
+			
+		    if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0){
+				int id = Convert.ToInt32(senderGrid.Rows[e.RowIndex].Cells[0].Value);
+				
+				conexion.Delete("prestamo", "id = " + id);
+				MainFormLoad(sender, new EventArgs());
+		    }
 		}
 	}
 }
